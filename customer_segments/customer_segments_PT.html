@@ -13143,7 +13143,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Importe as bibliotecas necessárias para este projeto</span>
@@ -13342,7 +13342,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO: Selecione três índices de sua escolha que você gostaria de obter como amostra do conjunto de dados</span>
@@ -13352,6 +13352,17 @@ div#notebook {
 <span class="n">samples</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">indices</span><span class="p">],</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Chosen samples of wholesale customers dataset:&quot;</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+
+
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Chosen samples offset from mean of dataset&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">samples</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
+
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Chosen samples offset from median of dataset:&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">samples</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
+
+<span class="n">percentiles</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">pct</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">percentiles</span> <span class="o">=</span> <span class="mi">100</span><span class="o">*</span><span class="n">percentiles</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">percentiles</span> <span class="o">=</span> <span class="n">percentiles</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">indices</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -13441,6 +13452,164 @@ div#notebook {
 
 </div>
 
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Chosen samples offset from mean of dataset
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Fresh</th>
+      <th>Milk</th>
+      <th>Grocery</th>
+      <th>Frozen</th>
+      <th>Detergents_Paper</th>
+      <th>Delicatessen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-5647.0</td>
+      <td>3012.0</td>
+      <td>-267.0</td>
+      <td>-667.0</td>
+      <td>635.0</td>
+      <td>6319.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>32466.0</td>
+      <td>48463.0</td>
+      <td>47620.0</td>
+      <td>4710.0</td>
+      <td>21290.0</td>
+      <td>4940.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4117.0</td>
+      <td>40401.0</td>
+      <td>84829.0</td>
+      <td>-2046.0</td>
+      <td>37946.0</td>
+      <td>1419.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Chosen samples offset from median of dataset:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Fresh</th>
+      <th>Milk</th>
+      <th>Grocery</th>
+      <th>Frozen</th>
+      <th>Detergents_Paper</th>
+      <th>Delicatessen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-2151.0</td>
+      <td>5181.0</td>
+      <td>2928.0</td>
+      <td>879.0</td>
+      <td>2700.0</td>
+      <td>6878.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>35962.0</td>
+      <td>50632.0</td>
+      <td>50815.0</td>
+      <td>6256.0</td>
+      <td>23355.0</td>
+      <td>5499.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>7613.0</td>
+      <td>42570.0</td>
+      <td>88024.0</td>
+      <td>-500.0</td>
+      <td>40011.0</td>
+      <td>1978.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -13461,12 +13630,9 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Resposta:</strong></p>
-<p>Na pirmeira amostra:
-    Indices 2 - Imagino que seja um pequeno mercado de bairro, já que nenhuma das suas vendas ultrapassa o valor dos 9k;</p>
-<p>Segundo:
-    Indices 4 - Creio que seja um mercado grande porte ou até mesmo um hipermercado;</p>
-<p>Terceiro:
-    Indices 85 - Creio que seja um varejista da área de Grocery já seu valor é de longe o maior dentro deste conjunto de dados.</p>
+<p><strong>Indices[2]</strong> Ao analisarmos verificamos que seu conjunto de produtos esta bem abaixo da média com valores negativos, apenas um item tem relevância "Milk". O que me sugere ser um pequeno mercado de bairro já que poucos atributos estão acima da média com "Detergents_Paper" e Delicatessen;</p>
+<p><strong>Indices[4]</strong> Tanto média como mediana deste cliente se destacam com os maiores valores em "Milk", "Grocery" e logo atrás "Fresh", baseado nestes valores, imagino que seja um mercado de grande porte ou até mesmo um atacadista;</p>
+<p><strong>Indices[85]</strong> Ao analisarmos medía e mediana nos deparamos com valores bem abaixo no grupo de "Frozen", isso nos leva crer que este cliente trabalhe com pouco produtos congelados, porém seus dados estatisticos em "Grocery", são de longes os maiores apresentados até o momento, baseado nisto creio que o cliente seja varejista da área de "Grocery".</p>
 
 </div>
 </div>
@@ -14756,10 +14922,10 @@ Outliers exibidos mais de uma vez:  [154, 65, 75, 66, 128]
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Resposta:</strong> Como pode ser analisado o total do primeiro e segundo componente equivalem a 72,52% da variância nos dados e se totalizamos os quatro primeiros componentes o total é de 92,79% de variância nos dados.</p>
-<p>Dimensão 1: Observamos maior consumo em "Detergents_Paper", "Grocery" e "Milk" representando a maior variância de dados(0.4993) entre todas as dimensões, arriscaria dizer que os clientes nesta dimensão seriam a grande varejistas;</p>
-<p>Dimensão 2: Também com uma quantidade de variância significativa de dados(0.2259) dentro das dimensões apresentadas com maior consumo dos clientes em "Frozen","Fresh" e "Delicatessen", indicando possíveis cliente como mercados;</p>
-<p>Dimensão 3: Podemos ver que o maior consumo dos clientes esta em "Delicatessen", "Frozen" e "Milk", indicando possíveis clientes como padarias em geral;</p>
-<p>Dimensão 4: Como na dimensão anterior apresenta o números maiores em "Delicatessen", "Fresh" e podemos dizer que se enquadraria com clientes váriados.</p>
+<p>Dimensão 1: Observamos maior consumo em "Detergents_Paper", "Grocery" e "Milk" representando a maior variância de dados(0.4993) entre todas as dimensões e também valores negativos para "Fresh" e "Frozen", demonstrando que os clientes da primeira dimensão não tem um foco em produtos frescos ou congelados, arriscaria dizer que os clientes nesta dimensão seriam a grande varejistas;</p>
+<p>Dimensão 2: Também com uma quantidade de variância significativa de dados(0.2259) dentro das dimensões apresentadas com maior consumo dos clientes em "Frozen", "Fresh", "Delicatessen" e um valor negativo "Detergents_Paper" indicando não ter necessidade de alto volume destes itens, bem diferente da D1. Sendo assim creio que o clientes sejam restaurantes ou mercados;</p>
+<p>Dimensão 3: Podemos ver que o maior consumo dos clientes esta em "Delicatessen", "Frozen" e "Milk", porém o que mais se destaca é o valor negativo em "Fresh", bem diferente do D2, nada é preparado na hora nestes clientes com produtos frescos. Imagino estabelecimentos como açougue e padarias.</p>
+<p>Dimensão 4: Inicialmente o destaque fica para os valores negativos "Detergents_Paper" e em especial para "Frozen". Por mais que a maior quantidade de variância esteja em "Delicatessen" como na Dimensão 3, os valores negativos sugerem não se tratar de mercados, pois tradicionalmente mercados americanos têm alto volume de itens congelados. Arriscando diria tratar de padarias ou pequenas mercearias.</p>
 
 </div>
 </div>
@@ -15326,8 +15492,8 @@ Segue abaixo um grupo variados de números de agrupamentos e o coeficiente de su
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Resposta:</strong></p>
-<p><strong>Segmento 0</strong> -Este segmento tem grande prevalência em Grocery, Milk e Fresh. Acredito que se trate de mercados de médio e pequeno porte, já que os itens são mais váriados.</p>
-<p><strong>Segmento 1</strong> -No segmento um vemos um maior volume em Fresh o que pode indicar restaurantes, já que produtos frescos são utilziados diariamente para criação dos pratos.</p>
+<p><strong>Segmento 0</strong>- Este segmento tem grande prevalência em Grocery, Milk e Fresh. Se analisarmos também as informações estatisticas  dos clientes anteriormente apresentadas, veremos que seus dados como média se encaixam melhores dentro deste segmento. Sendo assim os valores apresentam uma tendencia para alguns tipos de super mercado de médio e pequeno porte, já que os itens são mais váriados nos grupos citados acima.</p>
+<p><strong>Segmento 1</strong>- Se analisamor os valores podemos ver o oposto do Segmento 0, onde o valor médio é evidentemente maior Fresh e signifiacntemente menor nos outros itens o que pode indica serem clientes nos ramos de restaurante, padaria ou lanchontes já que produtos frescos são utilizados diariamente para criação dos pratos.</p>
 
 </div>
 </div>
